@@ -124,8 +124,8 @@ export function Navbar() {
           <div className="bg-gray-50 border-b border-gray-100 h-12 hidden xl:block">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 h-full flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <a href="/" className="flex items-center w-28">
-                  <Logo withStripe={true} />
+                <a href="/" className="flex items-center w-36">
+                  <Logo />
                 </a>
               </div>
 
@@ -147,18 +147,18 @@ export function Navbar() {
           <div className="bg-white h-16">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 h-full flex items-center">
               {/* Mobile: Logo (always visible) */}
-              <a href="/" className="flex items-center w-28 xl:hidden mr-auto">
-                <Logo withStripe={true} />
+              <a href="/" className="flex items-center w-36 xl:hidden mr-auto">
+                <Logo />
               </a>
 
               {/* Desktop: Logo - appears here when scrolled */}
               <a
                 href="/"
                 className={`hidden xl:flex items-center transition-all duration-300 ${
-                  isScrolled ? 'w-28 opacity-100 mr-4' : 'w-0 opacity-0 overflow-hidden'
+                  isScrolled ? 'w-36 opacity-100 mr-4' : 'w-0 opacity-0 overflow-hidden'
                 }`}
               >
-                <Logo withStripe={true} />
+                <Logo />
               </a>
 
               {/* Desktop Nav - shifts right when logo appears */}

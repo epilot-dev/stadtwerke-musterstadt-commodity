@@ -31,7 +31,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
-            <div className="w-32 xl:w-40">
+            <div className="w-40 xl:w-48">
               <Logo variant="light" />
             </div>
             <p className="text-gray-400 leading-relaxed">
@@ -95,7 +95,7 @@ export function Footer() {
             <ul className="space-y-4 text-gray-400">
               <li>
                 <div className="leading-relaxed">
-                  <p>2PUNKT0 AG</p>
+                  <p>Stadtwerke Musterstadt GmbH</p>
                   <p>Musterstraße 1</p>
                   <p>12345 Musterstadt</p>
                 </div>
@@ -116,7 +116,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© 2026 2PUNKT0 AG</p>
+          <p>© 2026 Stadtwerke Musterstadt GmbH</p>
           <div className="flex gap-8">
             <Link to="#" className="hover:text-white">
               Impressum
