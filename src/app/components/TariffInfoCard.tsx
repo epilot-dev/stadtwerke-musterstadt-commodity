@@ -76,7 +76,7 @@ export function TariffInfoCard({ commodity, className }: TariffInfoCardProps) {
           type="button"
           onClick={(event) => window.epilotChat?.open(event.currentTarget)}
           // Shown only once the chat is there, so the button never does nothing.
-          className="h-11 px-6 rounded-full bg-brand hover:bg-brand-accent text-white font-semibold [html:not([data-epilot-chat='ready'])_&]:hidden"
+          className="h-11 px-6 rounded-full bg-brand hover:bg-brand-accent text-white font-semibold cursor-pointer [html:not([data-epilot-chat='ready'])_&]:hidden"
         >
           <MessageCircle className="size-5" />
           Chat öffnen
