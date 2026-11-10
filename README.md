@@ -14,6 +14,6 @@ pnpm dev
 ## Pointing the site at an organization
 
 - `src/lib/siteConfig.ts` holds the journey IDs and the customer portal URL.
-- `index.html` holds the Website Chat embed and the preload link for the homepage journey.
+- `index.html` holds the Website Chat embed.
 - `src/styles/theme.css` holds the brand palette (`--color-brand-*`), taken from the organization's
   Design Builder design.

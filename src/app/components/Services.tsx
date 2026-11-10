@@ -5,17 +5,17 @@ import { ProductCard } from '@/app/components/ProductCard';
 const tariffs = [
   {
     title: 'Ökostrom',
-    description: '100% Ökostrom aus Sonne, Wind und Wasser. Berechnen Sie jetzt Ihren Tarif.',
+    description: '100% Ökostrom aus Sonne, Wind und Wasser.',
     icon: Leaf,
     href: '/okostrom',
-    cta: 'Tarif berechnen',
+    cta: 'Mehr erfahren',
   },
   {
     title: 'Gas',
-    description: 'Klimaneutrales Gas zu fairen Preisen. Berechnen Sie jetzt Ihren Tarif.',
+    description: 'Klimaneutrales Gas zu fairen Preisen.',
     icon: Flame,
     href: '/gas',
-    cta: 'Tarif berechnen',
+    cta: 'Mehr erfahren',
   },
 ];
 

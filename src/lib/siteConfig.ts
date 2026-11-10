@@ -5,10 +5,9 @@
 
 // Journeys embedded on the site, keyed by the page that shows them
 export const JOURNEY_IDS = {
-  // Tariff calculators (the Strom journey is also the homepage calculator)
-  homepage: '05dd7af0-b725-11f1-9a00-7f0bb1c2aa4f',
-  okostrom: '05dd7af0-b725-11f1-9a00-7f0bb1c2aa4f',
-  gas: '040586a0-b725-11f1-9a00-7f0bb1c2aa4f',
+  // No tariff calculators: the organization's new-customer Strom and Gas
+  // journeys were deleted, so the homepage, Ökostrom and Gas pages show tariff
+  // information and point to the chat and contact form (TariffInfoCard).
   // Service pages
   umzug: 'ce0e283a-e5c2-4d58-959c-85bb74fa5da8',
   sepa: '644cb57c-1cd8-4a1f-9e67-9b1330257e51',
