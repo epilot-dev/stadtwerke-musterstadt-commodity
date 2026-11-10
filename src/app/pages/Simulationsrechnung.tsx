@@ -1,0 +1,6 @@
+import { JourneyPage } from '@/app/components/JourneyPage';
+import { JOURNEY_IDS } from '@/lib/siteConfig';
+
+export default function Simulationsrechnung() {
+  return <JourneyPage journeyId={JOURNEY_IDS.simulationsrechnung} />;
+}

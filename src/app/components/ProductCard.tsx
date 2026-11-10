@@ -7,7 +7,6 @@ interface ProductCardProps {
   icon: LucideIcon;
   href: string;
   cta: string;
-  variant?: 'tarif' | 'netz';
   external?: boolean;
   image?: string;
   imageSize?: string;
@@ -19,13 +18,12 @@ export function ProductCard({
   icon: Icon,
   href,
   cta,
-  variant = 'tarif',
   external = false,
   image,
   imageSize = 'w-80 h-80 -mr-28 -mt-28',
 }: ProductCardProps) {
-  const hoverBgColor = variant === 'netz' ? 'group-hover:bg-[#63BEF8]' : 'group-hover:bg-[#deff03]';
-  const accentColor = variant === 'netz' ? 'text-[#63BEF8]' : 'text-[#deff03]';
+  const hoverBgColor = 'group-hover:bg-brand-accent';
+  const accentColor = 'text-brand-accent';
 
   const content = (
     <>
@@ -53,17 +51,17 @@ export function ProductCard({
 
       <div className="relative z-10 mb-6">
         <div
-          className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-white shadow-sm text-[#222222] transition-colors duration-300 ${hoverBgColor}`}
+          className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-white shadow-sm text-brand-ink transition-colors duration-300 ${hoverBgColor}`}
         >
           <Icon className="w-7 h-7" />
         </div>
       </div>
 
-      <h3 className="relative z-10 text-2xl font-bold text-[#222222] mb-3">{title}</h3>
+      <h3 className="relative z-10 text-2xl font-bold text-brand-ink mb-3">{title}</h3>
 
       <p className="relative z-10 text-gray-600 mb-6 flex-grow">{description}</p>
 
-      <div className="relative z-10 flex items-center font-bold text-[#222222] group-hover:text-black transition-colors">
+      <div className="relative z-10 flex items-center font-bold text-brand-ink group-hover:text-black transition-colors">
         {cta} <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
       </div>
     </>

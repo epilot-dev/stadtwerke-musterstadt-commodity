@@ -1,5 +1,5 @@
 import { JourneyPage } from '@/app/components/JourneyPage';
-import { JOURNEY_IDS } from '@/lib/journeyPreloader';
+import { JOURNEY_IDS } from '@/lib/siteConfig';
 
 export default function Sepa() {
   return <JourneyPage journeyId={JOURNEY_IDS.sepa} />;

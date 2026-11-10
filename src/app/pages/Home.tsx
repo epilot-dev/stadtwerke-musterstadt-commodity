@@ -6,7 +6,7 @@ import { Footer } from '@/app/components/Footer';
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-[#deff03] selection:text-black">
+    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-brand-accent selection:text-black">
       <Navbar />
       <main>
         <Hero />

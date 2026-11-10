@@ -10,11 +10,11 @@ interface JourneyPageProps {
 
 export function JourneyPage({ journeyId, mode }: JourneyPageProps) {
   return (
-    <div className="min-h-screen font-sans text-gray-900 selection:bg-[#deff03] selection:text-black flex flex-col">
+    <div className="min-h-screen font-sans text-gray-900 selection:bg-brand-accent selection:text-black flex flex-col">
       <Navbar />
       <main
         className={cn(
-          'flex flex-col items-center justify-center bg-[#fcfdf3]',
+          'flex flex-col items-center justify-center bg-brand-surface',
           !journeyId && 'h-[700px]'
         )}
       >

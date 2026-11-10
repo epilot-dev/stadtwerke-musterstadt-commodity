@@ -1,7 +1,7 @@
 import { Button } from './ui/button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import JourneyComponent from './JourneyComponent';
-import { JOURNEY_IDS } from '@/lib/journeyPreloader';
+import { JOURNEY_IDS } from '@/lib/siteConfig';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from './ui/utils';
 
@@ -123,7 +123,7 @@ export function Hero() {
             className="flex-1 text-white max-w-2xl"
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              Energie für <span className="text-[#deff03]">Morgen</span>.
+              Energie für <span className="text-brand-accent">Morgen</span>.
               <br />
               Schon heute.
             </h1>
@@ -133,7 +133,7 @@ export function Hero() {
             <div className="flex flex-wrap gap-4">
               <Button
                 asChild
-                className="bg-[#deff03] hover:bg-[#deff03] text-black h-12 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(222,255,3,0.8)]"
+                className="bg-brand-accent hover:bg-brand-accent text-black h-12 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,157,224,0.6)]"
               >
                 <a href="#products">Produkte entdecken</a>
               </Button>

@@ -10,6 +10,10 @@
 
     epilot-journey {
         display: block;
+        // On narrow screens the journey pins its action bar to the viewport with
+        // position: fixed, where it covers the Website Chat button. Layout containment
+        // makes this element the containing block, so the bar stays inside the journey.
+        contain: layout;
     }
 
     &.visible {

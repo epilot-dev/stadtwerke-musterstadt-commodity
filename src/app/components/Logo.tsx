@@ -6,15 +6,9 @@ interface LogoProps {
   variant?: 'light' | 'dark';
   className?: string;
   withStripe?: boolean;
-  stripeColor?: 'yellow' | 'blue';
 }
 
-export function Logo({
-  variant = 'dark',
-  className = '',
-  withStripe = false,
-  stripeColor = 'yellow',
-}: LogoProps) {
+export function Logo({ variant = 'dark', className = '', withStripe = false }: LogoProps) {
   if (variant === 'light') {
     // Footer version - white logo without stripe
     return (
@@ -72,34 +66,34 @@ export function Logo({
             y="50.93"
             width="300"
             height="24.192"
-            fill={stripeColor === 'blue' ? '#63bef8' : '#deff03'}
+            fill="#069de0"
             className="origin-bottom animate-stripe-grow"
           />
         )}
 
         {/* Stadtwerke text - top section */}
         <g transform="translate(43.74, 0)">
-          <path d={svgPaths.p43de80} fill="#222222" />
-          <path d={svgPaths.pd1eac00} fill="#222222" />
-          <path d={svgPaths.p19fcbe00} fill="#222222" />
-          <path d={svgPaths.p3ce5fec0} fill="#222222" />
-          <path d={svgPaths.p2b78c200} fill="#222222" />
-          <path d={svgPaths.p2805f420} fill="#222222" />
-          <path d={svgPaths.p29644b40} fill="#222222" />
-          <path d={svgPaths.p2796680} fill="#222222" />
-          <path d={svgPaths.p1febc7c0} fill="#222222" />
-          <path d={svgPaths.pc710280} fill="#222222" />
+          <path d={svgPaths.p43de80} fill="#002241" />
+          <path d={svgPaths.pd1eac00} fill="#002241" />
+          <path d={svgPaths.p19fcbe00} fill="#002241" />
+          <path d={svgPaths.p3ce5fec0} fill="#002241" />
+          <path d={svgPaths.p2b78c200} fill="#002241" />
+          <path d={svgPaths.p2805f420} fill="#002241" />
+          <path d={svgPaths.p29644b40} fill="#002241" />
+          <path d={svgPaths.p2796680} fill="#002241" />
+          <path d={svgPaths.p1febc7c0} fill="#002241" />
+          <path d={svgPaths.pc710280} fill="#002241" />
         </g>
 
         {/* 2PUNKT0 text - middle section */}
         <g transform="translate(2.68, 24.25)">
-          <path d={svgPaths.p3f226800} fill="#222222" />
-          <path d={svgPaths.p397fc480} fill="#222222" />
-          <path d={svgPaths.p1432c700} fill="#222222" />
-          <path d={svgPaths.p275a9400} fill="#222222" />
-          <path d={svgPaths.pc67a300} fill="#222222" />
-          <path d={svgPaths.p21c2df0} fill="#222222" />
-          <path d={svgPaths.p4f3a000} fill="#222222" />
+          <path d={svgPaths.p3f226800} fill="#002241" />
+          <path d={svgPaths.p397fc480} fill="#002241" />
+          <path d={svgPaths.p1432c700} fill="#002241" />
+          <path d={svgPaths.p275a9400} fill="#002241" />
+          <path d={svgPaths.pc67a300} fill="#002241" />
+          <path d={svgPaths.p21c2df0} fill="#002241" />
+          <path d={svgPaths.p4f3a000} fill="#002241" />
         </g>
       </svg>
     </div>

@@ -1,19 +1,34 @@
 import { Logo } from './Logo';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PORTAL_URL } from '@/lib/siteConfig';
 
-interface FooterProps {
-  variant?: 'tarif' | 'netz';
-}
+const hoverColor = 'hover:text-brand-accent';
+const hoverBgColor = 'hover:bg-brand-accent';
 
-export function Footer({ variant = 'tarif' }: FooterProps) {
-  const hoverColor = variant === 'netz' ? 'hover:text-[#63BEF8]' : 'hover:text-[#deff03]';
-  const hoverBgColor = variant === 'netz' ? 'hover:bg-[#63BEF8]' : 'hover:bg-[#deff03]';
+const productLinks = [
+  { name: 'Ökostrom', href: '/okostrom' },
+  { name: 'Gas', href: '/gas' },
+];
 
+const serviceLinks = [
+  { name: 'Service-Übersicht', href: '/service' },
+  { name: 'Umzug melden', href: '/service/umzug' },
+  { name: 'Zählerstand übermitteln', href: '/service/zaehlerstand' },
+  { name: 'Abschlag anpassen', href: '/service/abschlag' },
+  { name: 'Zahlungsmethode ändern', href: '/service/sepa' },
+  { name: 'Rechnungsadresse ändern', href: '/service/rechnungsadresse' },
+  { name: 'Persönliche Daten ändern', href: '/service/persoenliche-daten' },
+  { name: 'Simulationsrechnung', href: '/service/simulationsrechnung' },
+  { name: 'Vertrag kündigen', href: '/service/kuendigung' },
+  { name: 'Kontakt', href: '/service/kontakt' },
+];
+
+export function Footer() {
   return (
-    <footer className="bg-[#222222] text-white pt-20 pb-10">
+    <footer className="bg-brand-ink text-white pt-20 pb-10">
       <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="w-32 xl:w-40">
@@ -24,24 +39,15 @@ export function Footer({ variant = 'tarif' }: FooterProps) {
               nachhaltig.
             </p>
             <div className="flex gap-4">
-              <a
-                href="#"
-                className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center ${hoverBgColor} hover:text-black transition-colors`}
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center ${hoverBgColor} hover:text-black transition-colors`}
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center ${hoverBgColor} hover:text-black transition-colors`}
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+              {[Facebook, Instagram, Linkedin].map((Icon, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center ${hoverBgColor} hover:text-black transition-colors`}
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -49,134 +55,13 @@ export function Footer({ variant = 'tarif' }: FooterProps) {
           <div>
             <h4 className="text-lg font-bold mb-6">Produkte</h4>
             <ul className="space-y-3 text-gray-400">
-              <li>
-                <Link to="/okostrom" className={`${hoverColor} transition-colors`}>
-                  Ökostrom
-                </Link>
-              </li>
-              <li>
-                <Link to="/gas" className={`${hoverColor} transition-colors`}>
-                  Gas
-                </Link>
-              </li>
-              <li>
-                <Link to="/warmestrom" className={`${hoverColor} transition-colors`}>
-                  Wärmestrom
-                </Link>
-              </li>
-              <li>
-                <Link to="/warmepumpe" className={`${hoverColor} transition-colors`}>
-                  Wärmepumpe
-                </Link>
-              </li>
-              <li>
-                <Link to="/fernwarme" className={`${hoverColor} transition-colors`}>
-                  Fernwärme
-                </Link>
-              </li>
-              <li>
-                <Link to="/ladestrom" className={`${hoverColor} transition-colors`}>
-                  Ladestrom
-                </Link>
-              </li>
-              <li>
-                <Link to="/wallbox" className={`${hoverColor} transition-colors`}>
-                  Wallbox
-                </Link>
-              </li>
-              <li>
-                <Link to="/photovoltaik" className={`${hoverColor} transition-colors`}>
-                  Photovoltaik
-                </Link>
-              </li>
-              <li>
-                <Link to="/balkonkraftwerke" className={`${hoverColor} transition-colors`}>
-                  Balkonkraftwerke
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://portal.epilot.cloud/journey-app/?journeyId=752b9906-5590-4a8b-b3d1-060b7d810c5b"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${hoverColor} transition-colors`}
-                >
-                  Fortgeschrittenes Journey-Design 1
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://portal.epilot.cloud/journey-app/?journeyId=2825ce00-02ad-11f1-94b7-6b78fa224907"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${hoverColor} transition-colors`}
-                >
-                  Fortgeschrittenes Journey-Design 2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Netz Column */}
-          <div>
-            <h4 className="text-lg font-bold mb-6">Netz</h4>
-            <ul className="space-y-3 text-gray-400">
-              <li>
-                <Link to="/netz" className="hover:text-[#63BEF8] transition-colors">
-                  Netz-Übersicht
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/netz/strom/einspeiser"
-                  className="hover:text-[#63BEF8] transition-colors"
-                >
-                  Einspeiser und Verbraucher
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://netz.ecp.epilot.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#63BEF8] transition-colors"
-                >
-                  Stromanschluss beantragen
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://netz.ecp.epilot.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#63BEF8] transition-colors"
-                >
-                  Erdgasanschluss beantragen
-                </a>
-              </li>
-              <li>
-                <Link
-                  to="/netz/wasser/anschluss"
-                  className="hover:text-[#63BEF8] transition-colors"
-                >
-                  Wasserhausanschluss beantragen
-                </Link>
-              </li>
-              <li>
-                <Link to="/netz/fernwarme/check" className="hover:text-[#63BEF8] transition-colors">
-                  Verfügbarkeitscheck Fernwärme
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://installateur.ecp.epilot.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#63BEF8] transition-colors"
-                >
-                  Für Installateure
-                </a>
-              </li>
+              {productLinks.map((link) => (
+                <li key={link.href}>
+                  <Link to={link.href} className={`${hoverColor} transition-colors`}>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -184,35 +69,22 @@ export function Footer({ variant = 'tarif' }: FooterProps) {
           <div>
             <h4 className="text-lg font-bold mb-6">Service</h4>
             <ul className="space-y-3 text-gray-400">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link to={link.href} className={`${hoverColor} transition-colors`}>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link to="/service" className={`${hoverColor} transition-colors`}>
-                  Service-Übersicht
-                </Link>
-              </li>
-              <li>
-                <Link to="/service#umzug" className={`${hoverColor} transition-colors`}>
-                  Umzug melden
-                </Link>
-              </li>
-              <li>
-                <Link to="/service#sepa" className={`${hoverColor} transition-colors`}>
-                  SEPA-Mandat einrichten
-                </Link>
-              </li>
-              <li>
-                <Link to="/service#abschlag" className={`${hoverColor} transition-colors`}>
-                  Abschlag anpassen
-                </Link>
-              </li>
-              <li>
-                <Link to="/service#kuendigung" className={`${hoverColor} transition-colors`}>
-                  Vertrag kündigen
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className={`${hoverColor} transition-colors`}>
+                <a
+                  href={PORTAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${hoverColor} transition-colors`}
+                >
                   Kundenportal
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
