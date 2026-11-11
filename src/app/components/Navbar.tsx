@@ -124,9 +124,9 @@ export function Navbar() {
           <div className="bg-gray-50 border-b border-gray-100 h-12 hidden xl:block">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 h-full flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <a href="/" className="flex items-center w-36">
+                <Link to="/" className="flex items-center w-36">
                   <Logo />
-                </a>
+                </Link>
               </div>
 
               {/* Über uns - Right aligned */}
@@ -147,19 +147,19 @@ export function Navbar() {
           <div className="bg-white h-16">
             <div className="container mx-auto max-w-[1440px] px-4 md:px-6 h-full flex items-center">
               {/* Mobile: Logo (always visible) */}
-              <a href="/" className="flex items-center w-36 xl:hidden mr-auto">
+              <Link to="/" className="flex items-center w-36 xl:hidden mr-auto">
                 <Logo />
-              </a>
+              </Link>
 
               {/* Desktop: Logo - appears here when scrolled */}
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={`hidden xl:flex items-center transition-all duration-300 ${
                   isScrolled ? 'w-36 opacity-100 mr-4' : 'w-0 opacity-0 overflow-hidden'
                 }`}
               >
                 <Logo />
-              </a>
+              </Link>
 
               {/* Desktop Nav - shifts right when logo appears */}
               <div
@@ -267,15 +267,15 @@ export function Navbar() {
                         item.subItems ? toggleMobileSubmenu(item.name) : setIsOpen(false)
                       }
                     >
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.href}
                         className="text-lg font-medium text-gray-900"
                         onClick={(e) => {
                           if (item.subItems) e.preventDefault();
                         }}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                       {item.subItems && (
                         <ChevronDown
                           className={`w-5 h-5 text-gray-400 transition-transform ${mobileExpanded === item.name ? 'rotate-180' : ''}`}
