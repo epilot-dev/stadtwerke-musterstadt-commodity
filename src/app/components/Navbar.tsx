@@ -20,10 +20,11 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
+import { isCustomChat } from '@/lib/chatMode';
 import { PORTAL_URL } from '@/lib/siteConfig';
 
 // Define the navigation structure
-const NAV_ITEMS = [
+const COMMODITY_NAV_ITEMS = [
   {
     name: 'Strom & Gas',
     href: '/#',
@@ -49,6 +50,10 @@ const NAV_ITEMS = [
     ],
   },
 ];
+
+// The menus and the portal link belong to the Commodity org.
+const NAV_ITEMS = isCustomChat ? [] : COMMODITY_NAV_ITEMS;
+const showPortal = !isCustomChat;
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +98,7 @@ export function Navbar() {
   const standardLinkClass = `${baseLinkClass} hover:bg-brand-accent hover:text-black`;
 
   // Helper function to check if a nav item is active
-  const isNavItemActive = (item: (typeof NAV_ITEMS)[0]) => {
+  const isNavItemActive = (item: (typeof COMMODITY_NAV_ITEMS)[0]) => {
     // Check if the main item href matches (for items like Service that have both href and subItems)
     if (item.href === location.pathname) {
       return true;
@@ -224,19 +229,24 @@ export function Navbar() {
               </div>
 
               <div className="hidden xl:flex items-center h-full gap-2 ml-auto">
-                <a
-                  href={PORTAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={standardLinkClass}
-                >
-                  <User className="w-4 h-4" />
-                  <span>Kundenportal</span>
-                </a>
+                {showPortal && (
+                  <a
+                    href={PORTAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={standardLinkClass}
+                  >
+                    <User className="w-4 h-4" />
+                    <span>Kundenportal</span>
+                  </a>
+                )}
               </div>
 
               {/* Mobile Toggle */}
-              <button className="xl:hidden p-2 text-gray-700" onClick={() => setIsOpen(!isOpen)}>
+              <button
+                className={`xl:hidden p-2 text-gray-700 ${isCustomChat ? 'hidden' : ''}`}
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 <motion.div
                   initial={false}
                   animate={{ rotate: isOpen ? 90 : 0 }}
@@ -317,16 +327,18 @@ export function Navbar() {
                 ))}
 
                 {/* Kundenportal - Mobile */}
-                <a
-                  href={PORTAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-4 hover:bg-gray-100 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <User className="w-5 h-5 text-gray-900" />
-                  <span className="text-lg font-medium text-gray-900">Kundenportal</span>
-                </a>
+                {showPortal && (
+                  <a
+                    href={PORTAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-4 hover:bg-gray-100 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <User className="w-5 h-5 text-gray-900" />
+                    <span className="text-lg font-medium text-gray-900">Kundenportal</span>
+                  </a>
+                )}
               </div>
             </motion.div>
           )}

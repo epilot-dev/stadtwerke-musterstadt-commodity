@@ -81,7 +81,7 @@ export function Services() {
             </div>
 
             <Link to="/service/kontakt">
-              <button className="w-full py-4 rounded-full bg-white text-brand-ink font-bold transition-all duration-300 relative z-10 cursor-pointer hover:bg-brand-accent hover:shadow-[0_0_30px_rgba(6,157,224,0.6)]">
+              <button className="w-full py-4 rounded-full bg-white text-brand-ink font-bold transition-all duration-300 relative z-10 cursor-pointer hover:bg-brand-accent hover:shadow-[0_0_30px_var(--color-brand-accent)]">
                 Kontakt aufnehmen
               </button>
             </Link>

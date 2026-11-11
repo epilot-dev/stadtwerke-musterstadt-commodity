@@ -1,6 +1,7 @@
 import { Logo } from './Logo';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { isCustomChat } from '@/lib/chatMode';
 import { PORTAL_URL } from '@/lib/siteConfig';
 
 const hoverColor = 'hover:text-brand-accent';
@@ -51,43 +52,48 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Products Column */}
-          <div>
-            <h4 className="text-lg font-bold mb-6">Produkte</h4>
-            <ul className="space-y-3 text-gray-400">
-              {productLinks.map((link) => (
-                <li key={link.href}>
-                  <Link to={link.href} className={`${hoverColor} transition-colors`}>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Product and service links belong to the Commodity org */}
+          {!isCustomChat && (
+            <>
+              {/* Products Column */}
+              <div>
+                <h4 className="text-lg font-bold mb-6">Produkte</h4>
+                <ul className="space-y-3 text-gray-400">
+                  {productLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link to={link.href} className={`${hoverColor} transition-colors`}>
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          {/* Service Column */}
-          <div>
-            <h4 className="text-lg font-bold mb-6">Service</h4>
-            <ul className="space-y-3 text-gray-400">
-              {serviceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link to={link.href} className={`${hoverColor} transition-colors`}>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <a
-                  href={PORTAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${hoverColor} transition-colors`}
-                >
-                  Kundenportal
-                </a>
-              </li>
-            </ul>
-          </div>
+              {/* Service Column */}
+              <div>
+                <h4 className="text-lg font-bold mb-6">Service</h4>
+                <ul className="space-y-3 text-gray-400">
+                  {serviceLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link to={link.href} className={`${hoverColor} transition-colors`}>
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <a
+                      href={PORTAL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${hoverColor} transition-colors`}
+                    >
+                      Kundenportal
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
 
           {/* Contact Column */}
           <div>

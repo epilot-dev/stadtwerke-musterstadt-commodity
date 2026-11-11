@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { TariffInfoCard } from './TariffInfoCard';
+import { isCustomChat } from '@/lib/chatMode';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -43,14 +44,20 @@ export function Hero() {
           <div className="flex flex-wrap gap-4">
             <Button
               asChild
-              className="bg-brand-accent hover:bg-brand-accent text-black h-12 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,157,224,0.6)]"
+              className="bg-brand-accent hover:bg-brand-accent text-black h-12 px-8 rounded-full text-lg font-semibold transition-all duration-300 hover:shadow-[0_0_30px_var(--color-brand-accent)]"
             >
-              <a href="#products">Produkte entdecken</a>
+              {isCustomChat ? (
+                <button type="button" data-epilot-chat-open>
+                  Fragen Sie unseren Assistenten
+                </button>
+              ) : (
+                <a href="#products">Produkte entdecken</a>
+              )}
             </Button>
           </div>
         </motion.div>
 
-        <TariffInfoCard />
+        {!isCustomChat && <TariffInfoCard />}
       </div>
     </section>
   );

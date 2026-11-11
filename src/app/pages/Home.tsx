@@ -3,6 +3,7 @@ import { Hero } from '@/app/components/Hero';
 import { Features } from '@/app/components/Features';
 import { Services } from '@/app/components/Services';
 import { Footer } from '@/app/components/Footer';
+import { isCustomChat } from '@/lib/chatMode';
 
 export function HomePage() {
   return (
@@ -11,7 +12,7 @@ export function HomePage() {
       <main>
         <Hero />
         <Features />
-        <Services />
+        {!isCustomChat && <Services />}
       </main>
       <Footer />
     </div>

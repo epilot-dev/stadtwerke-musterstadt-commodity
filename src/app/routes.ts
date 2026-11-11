@@ -1,4 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
+import { isCustomChat } from '@/lib/chatMode';
 import { HomePage } from '@/app/pages/Home';
 
 import { Root } from '@/app/components/Root';
@@ -15,24 +16,30 @@ import PersoenlicheDaten from '@/app/pages/PersoenlicheDaten';
 import Simulationsrechnung from '@/app/pages/Simulationsrechnung';
 import Kontakt from '@/app/pages/Kontakt';
 
+// The journey pages belong to the Commodity org, so they are left out when the
+// site shows another org's chat.
+const journeyRoutes = [
+  { path: 'okostrom', Component: Okostrom },
+  { path: 'gas', Component: Gas },
+  { path: 'service', Component: ServicePage },
+  { path: 'service/umzug', Component: Umzug },
+  { path: 'service/sepa', Component: Sepa },
+  { path: 'service/abschlag', Component: Abschlag },
+  { path: 'service/kuendigung', Component: Kuendigung },
+  { path: 'service/zaehlerstand', Component: Zaehlerstand },
+  { path: 'service/rechnungsadresse', Component: Rechnungsadresse },
+  { path: 'service/persoenliche-daten', Component: PersoenlicheDaten },
+  { path: 'service/simulationsrechnung', Component: Simulationsrechnung },
+  { path: 'service/kontakt', Component: Kontakt },
+];
+
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: Root,
     children: [
       { index: true, Component: HomePage },
-      { path: 'okostrom', Component: Okostrom },
-      { path: 'gas', Component: Gas },
-      { path: 'service', Component: ServicePage },
-      { path: 'service/umzug', Component: Umzug },
-      { path: 'service/sepa', Component: Sepa },
-      { path: 'service/abschlag', Component: Abschlag },
-      { path: 'service/kuendigung', Component: Kuendigung },
-      { path: 'service/zaehlerstand', Component: Zaehlerstand },
-      { path: 'service/rechnungsadresse', Component: Rechnungsadresse },
-      { path: 'service/persoenliche-daten', Component: PersoenlicheDaten },
-      { path: 'service/simulationsrechnung', Component: Simulationsrechnung },
-      { path: 'service/kontakt', Component: Kontakt },
+      ...(isCustomChat ? [{ path: '*', loader: () => redirect('/') }] : journeyRoutes),
     ],
   },
 ]);
