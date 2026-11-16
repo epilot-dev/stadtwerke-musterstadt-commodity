@@ -108,34 +108,37 @@ function cachedTheme(): SiteTheme | undefined {
 function applyTheme(theme: SiteTheme) {
   const root = document.documentElement.style;
 
-  if (theme.primary) {
-    root.setProperty('--primary', theme.primary);
-    root.setProperty('--color-brand', theme.primary);
-    // The site's highlight and dark tones are hand-picked for the default
-    // branding; for another org they are derived from its primary colour.
-    root.setProperty('--color-brand-accent', `color-mix(in oklab, ${theme.primary} 72%, white)`);
-    root.setProperty('--color-brand-ink', `color-mix(in oklab, ${theme.primary} 30%, black)`);
+  // A value the design no longer has falls back to the site's own.
+  const set = (name: string, value: string | undefined) =>
+    value === undefined ? root.removeProperty(name) : root.setProperty(name, value);
+
+  const { primary } = theme;
+  set('--primary', primary);
+  set('--color-brand', primary);
+  // The site's highlight and dark tones are hand-picked for the default
+  // branding; for another org they are derived from its primary colour.
+  set('--color-brand-accent', primary && `color-mix(in oklab, ${primary} 72%, white)`);
+  set('--color-brand-ink', primary && `color-mix(in oklab, ${primary} 30%, black)`);
+  set('--color-brand-surface', theme.background);
+  set('--radius', theme.radius === undefined ? undefined : `${theme.radius}px`);
+
+  if (!theme.fontUrl) {
+    root.removeProperty('--font-sans');
+    return;
   }
-  if (theme.background) {
-    root.setProperty('--color-brand-surface', theme.background);
-  }
-  if (theme.radius !== undefined) {
-    root.setProperty('--radius', `${theme.radius}px`);
-  }
-  if (theme.fontUrl) {
-    const font = new FontFace('Chat Design Font', `url("${theme.fontUrl}")`, {
-      display: 'swap',
+
+  const font = new FontFace('Chat Design Font', `url("${theme.fontUrl}")`, {
+    display: 'swap',
+  });
+  font
+    .load()
+    .then((loaded) => {
+      document.fonts.add(loaded);
+      root.setProperty('--font-sans', `'Chat Design Font', ui-sans-serif, system-ui, sans-serif`);
+    })
+    .catch(() => {
+      // Keep the site's own font when the design's font cannot be loaded.
     });
-    font
-      .load()
-      .then((loaded) => {
-        document.fonts.add(loaded);
-        root.setProperty('--font-sans', `'Chat Design Font', ui-sans-serif, system-ui, sans-serif`);
-      })
-      .catch(() => {
-        // Keep the site's own font when the design's font cannot be loaded.
-      });
-  }
 }
 
 function loadChat() {
@@ -147,10 +150,28 @@ function loadChat() {
   document.head.appendChild(script);
 }
 
+/** Reads the chat's current design and applies it when it differs from `known`. */
+async function refreshTheme(known?: SiteTheme): Promise<void> {
+  try {
+    const theme = await fetchTheme();
+    if (!theme) return;
+
+    const serialised = JSON.stringify(theme);
+    if (known && serialised === JSON.stringify(known)) return;
+
+    applyTheme(theme);
+    storage()?.setItem(THEME_KEY, serialised);
+  } catch {
+    // The chat is refused or unreachable: keep the current look.
+  }
+}
+
 /**
  * Starts the chat and, for another org's chat, themes the site from its design.
- * Resolves once the theme is applied (or could not be read), so the site can
- * render without first flashing the default colours.
+ * Resolves once a theme is applied (or could not be read), so the site can
+ * render without first flashing the default colours. A theme remembered from
+ * an earlier page load is applied at once and then checked against the design
+ * in the background, so a changed design shows up on the next load.
  */
 export async function prepareSite(): Promise<void> {
   loadChat();
@@ -159,15 +180,9 @@ export async function prepareSite(): Promise<void> {
   const cached = cachedTheme();
   if (cached) {
     applyTheme(cached);
+    void refreshTheme(cached);
     return;
   }
 
-  try {
-    const theme = await fetchTheme();
-    if (!theme) return;
-    applyTheme(theme);
-    storage()?.setItem(THEME_KEY, JSON.stringify(theme));
-  } catch {
-    // The chat is refused or unreachable: keep the default look.
-  }
+  await refreshTheme();
 }
